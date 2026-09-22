@@ -10,7 +10,7 @@ import model.Solicitacao;
 // nunca é mexido direto, só via enqueue/dequeue e push/pop mesmo
 public class CentralAtendimento {
 
-    private static final int TAM_FILA = 50;
+    private static final int TAM_FILA = 2;
     private static final int TAM_PILHA = 100;
 
     private FilaCircular<Solicitacao> filaEspera;
@@ -23,7 +23,7 @@ public class CentralAtendimento {
     public CentralAtendimento() {
         this.filaEspera = new FilaCircular<Solicitacao>(TAM_FILA);
         this.historico = new Pilha<Operacao>(TAM_PILHA);
-        this.proximoCodigo = 101;   // codigos comecam em 101, como no enunciado
+        this.proximoCodigo = 101;   // codigos comecam em 101, segui o enunciado pedro
         this.totalCadastradas = 0;
         this.totalAtendidas = 0;
     }

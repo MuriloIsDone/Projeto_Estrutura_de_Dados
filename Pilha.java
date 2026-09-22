@@ -53,14 +53,7 @@ public class Pilha <T> {   // classe do prof tb, deixa assim
 	  return topoPilha+1; // +1 pq o indice começa em -1
    	}
    	   
-	// Sobrescrita/sobreposição (override) do método toString(), que veio da superclasse Object.
-	// O retorno do método toString() é a representação de um objeto em formato string, e toString()
-	// geralmente é executado (de forma implícita) quando passamos um objeto ao System.out.print*().
-	// Experimente incluir o seguinte código na main() e veja a saída:
-	// Pilha p = new Pilha();
-	// System.out.println(p);
-	//
-	// Depois, remova/comente o método toString() abaixo e rode o código acima novamente.
+	//representa a pilha em formato de string...
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();

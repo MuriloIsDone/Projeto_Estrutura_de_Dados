@@ -11,7 +11,7 @@ public class FilaCircular <T>{
 		  e = (T[]) new Object[tamanho];
 	}
 	
-	public FilaCircular() {  // construtor 2 (sem parâmetros).
+	public FilaCircular() {  // construtor 2 
 		this(TAM_DEFAULT);
 	}
 
@@ -72,12 +72,8 @@ public class FilaCircular <T>{
 		return qtde;
 	}
 	
-	// sobrescrita/sobreposição (override) do método toString(), que veio da superclasse Object.
-
-	// retorno do método toString() é a representação de um objeto em formato string, e toString()
-	// geralmente é executado (de forma implicita...diretona mesmo) quando passamos um objeto no system.out.print*().
-	// Experimente incluir o seguinte codigo na main e veja a saida, filaCircular<tipo> f = new filaCircular<tipo>();  system.out.println(f);
-	// eeee depois, remova o forma tostring() abaixo e rode o codigo acima novamente, em geral.
+	//criar e devolver, uma representaçao e formato de string (texto) e mostrar suas propriedades, ex: elementos.
+	//String build é a construcao do cabeçario.
 	@Override
 	public String toString()  {
 		try {
