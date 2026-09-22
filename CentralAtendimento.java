@@ -5,17 +5,6 @@ import estruturas.Pilha;
 import model.Operacao;
 import model.Solicitacao;
 
-/**
- * Regras de negocio da Central de Atendimento (1o bimestre).
- *
- * Estruturas utilizadas (ambas fornecidas pelo professor, baseadas em vetor):
- *   - FilaCircular<Solicitacao> : solicitacoes aguardando atendimento (FIFO)
- *   - Pilha<Operacao>           : historico recente de operacoes (LIFO)
- *
- * Nenhuma estrutura da Java Collections Framework e utilizada.
- * O vetor interno das estruturas NUNCA e manipulado diretamente: toda a
- * navegacao e feita apenas com enqueue/dequeue e push/pop.
- */
 public class CentralAtendimento {
 
     private static final int TAM_FILA = 50;
@@ -36,9 +25,7 @@ public class CentralAtendimento {
         this.totalAtendidas = 0;
     }
 
-    // ------------------------------------------------------------------
-    // 1 - Cadastrar nova solicitacao
-    // ------------------------------------------------------------------
+    // 1- cadastrar nova solicitacao
     public Solicitacao cadastrar(String solicitante, String descricao,
                                  String categoria, int prioridade) throws Exception {
         if (filaEspera.qIsFull())
@@ -55,18 +42,14 @@ public class CentralAtendimento {
         return s;
     }
 
-    // ------------------------------------------------------------------
-    // 2 - Consultar proxima solicitacao (sem remover)
-    // ------------------------------------------------------------------
+    // 2- consultar proxima solicitacao (sem remover neh)
     public Solicitacao consultarProxima() throws Exception {
         if (filaEspera.qIsEmpty())
             throw new Exception("Nao ha solicitacoes aguardando atendimento.");
         return filaEspera.front();
     }
 
-    // ------------------------------------------------------------------
-    // 3 - Atender proxima solicitacao (remove do INICIO da fila - FIFO)
-    // ------------------------------------------------------------------
+    // 3- atender proxima solicitacao (remove do inicio da fila - fifo)
     public Solicitacao atenderProxima(String responsavel) throws Exception {
         if (filaEspera.qIsEmpty())
             throw new Exception("Nao ha solicitacoes na fila para atender.");
@@ -80,11 +63,9 @@ public class CentralAtendimento {
         return s;
     }
 
-    // ------------------------------------------------------------------
     // 4 - Exibir fila de solicitacoes
-    // A fila e percorrida girando os elementos: retira do inicio e devolve
-    // ao fim. Apos qtde rotacoes a fila volta exatamente a ordem original.
-    // ------------------------------------------------------------------
+    // a fila e percorrida girando os elementos... retira do inicio e devolve
+    // ao fim. apos qtde rotacoes a fila volta exatamente a ordem original.
     public String filaFormatada() throws Exception {
         if (filaEspera.qIsEmpty())
             return "  (fila vazia)";
@@ -99,9 +80,7 @@ public class CentralAtendimento {
         return sb.toString();
     }
 
-    // ------------------------------------------------------------------
-    // 5 - Quantidade de solicitacoes aguardando
-    // ------------------------------------------------------------------
+    // 5- quantidade de solicitacoes aguardando
     public int quantidadeAguardando() {
         return filaEspera.totalElementos();
     }
@@ -110,20 +89,16 @@ public class CentralAtendimento {
         return filaEspera.qIsEmpty();
     }
 
-    // ------------------------------------------------------------------
-    // 6 - Consultar ultima operacao realizada (topo da pilha, sem remover)
-    // ------------------------------------------------------------------
+    // 6- consultar ultima operacao realizada (topo da pilha, sem remover)
     public Operacao ultimaOperacao() throws Exception {
         if (historico.isEmpty())
             throw new Exception("Nenhuma operacao foi realizada ainda.");
         return historico.topo();
     }
 
-    // ------------------------------------------------------------------
-    // 7 - Exibir historico em ordem inversa (LIFO)
-    // Desempilha tudo para uma pilha auxiliar (imprimindo no caminho) e
+    // 7- exibir historico em ordem inversa lifo
+    // desempilha tudo para uma pilha auxiliar (printa no caminho) e
     // depois devolve, preservando a ordem original.
-    // ------------------------------------------------------------------
     public String historicoFormatado() throws Exception {
         if (historico.isEmpty())
             return "  (nenhuma operacao registrada)";
@@ -143,10 +118,10 @@ public class CentralAtendimento {
     }
 
     // ------------------------------------------------------------------
-    // 8 - Desfazer ultima operacao
-    // Somente operacoes de ATENDIMENTO podem ser desfeitas. A solicitacao
-    // volta para a POSICAO QUE OCUPAVA antes, ou seja, o inicio da fila.
-    // Para isso usa-se uma fila auxiliar da mesma classe fornecida pelo
+    // 8 - desfaz a ultima operacao
+    // APENAASSS operacoes de atendimento podem ser desfeitas, tipo, a solicitacao
+    // volta para a posicao que estava antes, ou sejaaaa, o inicio da fila.
+    // Para isso vai usar uma fila auxiliar da mesma classe fornecida pelo
     // professor (proibido mexer no vetor interno).
     // ------------------------------------------------------------------
     public Solicitacao desfazerUltimaOperacao() throws Exception {
@@ -167,7 +142,7 @@ public class CentralAtendimento {
         s.setStatus(Solicitacao.AGUARDANDO);
         s.setResponsavel("-");
 
-        // reinsere no INICIO: monta uma fila auxiliar com ela na frente
+        // coloca dnv no inicio: monta uma fila auxiliar com ela na frente
         FilaCircular<Solicitacao> aux = new FilaCircular<Solicitacao>(TAM_FILA);
         aux.enqueue(s);
         while (!filaEspera.qIsEmpty())
@@ -179,9 +154,7 @@ public class CentralAtendimento {
         return s;
     }
 
-    // ------------------------------------------------------------------
-    // Resumo do sistema
-    // ------------------------------------------------------------------
+    // resumo do sistema
     public String resumo() {
         StringBuilder sb = new StringBuilder();
         sb.append("  Solicitacoes cadastradas ..: ").append(totalCadastradas).append("\n");
@@ -193,8 +166,8 @@ public class CentralAtendimento {
         return sb.toString();
     }
 
-    /** Verifica, ANTES de alterar a fila, se ainda cabe uma operacao no
-     *  historico. Assim o sistema nunca fica em estado inconsistente. */
+    // pfv verifica, antes de alterar a fila, se ainda cabe uma operacao no
+    // historico. Assim o sistema nunca fica em estado inconsistente...
     private void verificaEspacoHistorico() throws Exception {
         if (historico.isFull())
             throw new Exception("O historico de operacoes esta cheio (capacidade "

@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class Solicitacao {
 
-    // Estados possiveis da solicitacao (constantes evitam erro de digitacao)
+    //estados possiveis da solicitacao (constantes evitam erro de digitacao)
     public static final String AGUARDANDO = "AGUARDANDO";
     public static final String EM_ATENDIMENTO = "EM_ATENDIMENTO";
     public static final String CONCLUIDA = "CONCLUIDA";
@@ -77,9 +77,8 @@ public class Solicitacao {
         this.responsavel = responsavel;
     }
 
-    /**
-     * Representacao textual da solicitacao, usada quando o objeto e impresso.
-     */
+    // Representacao textual da solicitacao, usada quando o objeto e impresso.
+
     @Override
     public String toString() {
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");

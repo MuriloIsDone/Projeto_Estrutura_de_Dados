@@ -3,11 +3,10 @@ package model;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-/**
- * Registro de uma operacao realizada no sistema.
- * Cada operacao e empilhada na Pilha (LIFO) para formar o historico recente
- * e permitir o "desfazer".
- */
+// Registro de uma operacao realizada no sistema.
+// Cada operacao e empilhada na Pilha (LIFO) para formar o historico recente
+//e permitir o "desfazer".
+
 public class Operacao {
 
     public static final String CADASTRO = "CADASTRO";

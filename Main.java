@@ -2,10 +2,7 @@ package app;
 
 import ui.Menu;
 
-/**
- * Ponto de entrada da aplicacao.
- * Projeto Integrador - Estruturas de Dados I - 1o bimestre.
- */
+// menu do tao trabalhoso... Projeto de estrutura de dados 1
 public class Main {
     public static void main(String[] args) {
         Menu menu = new Menu();

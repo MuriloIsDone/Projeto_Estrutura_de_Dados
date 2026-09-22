@@ -1,3 +1,4 @@
+
 package ui;
 
 import java.util.Scanner;
@@ -6,10 +7,8 @@ import model.Operacao;
 import model.Solicitacao;
 import service.CentralAtendimento;
 
-/**
- * Camada de interface com o usuario. Nao contem regra de negocio:
- * apenas le dados, chama a CentralAtendimento e exibe resultados.
- */
+//camada de interface com o usuario. Nao contem regra de negocio,
+//apenas le dados, chama a CentralAtendimento e exibe resultados.
 public class Menu {
 
     private Scanner entrada;
@@ -40,7 +39,7 @@ public class Menu {
                     case 0: System.out.println("Encerrando o sistema. Ate mais!"); break;
                 }
             } catch (Exception e) {
-                // Todas as excecoes lancadas pelas estruturas e pela regra de
+                //todas as excecoes lancadas pelas estruturas e pela regra de
                 // negocio sao tratadas aqui, em um unico ponto.
                 System.out.println("  >> Aviso: " + e.getMessage());
             }
@@ -127,7 +126,7 @@ public class Menu {
         System.out.println(central.resumo());
     }
 
-    // ------------------------------------------------------- leitura validada
+    //leitura validada
 
     private String lerTexto(String rotulo) {
         String texto;

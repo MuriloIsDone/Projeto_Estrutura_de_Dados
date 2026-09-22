@@ -16,13 +16,13 @@ public class Pilha <T> {
    	public boolean isEmpty() {
    		return this.topoPilha == -1;	
    	}
-   	// Verifica se a pilha está
-   	// cheia
+   	//verifica se a pilha está
+   	//cheia
    	public boolean isFull() {
    	  return this.topoPilha == this.e.length-1;
    	}
-   	// insere um elemento e 
-   	// no topo da pilha
+   	//insere um elemento e 
+   	//no topo da pilha
    	public void push(T e) throws Exception{
    		if (! this.isFull( ))
    			this.e[++this.topoPilha] = e;
@@ -38,7 +38,7 @@ public class Pilha <T> {
    			throw new Exception( "underflow - Esvaziamento de Pilha");
    		}  
    	}
-   	//Retorna o elemento que está
+   	//retorna o elemento que está
    	//no topo da pilha
    	public T topo() throws Exception{
 	  if ( ! this.isEmpty( ))
@@ -47,7 +47,7 @@ public class Pilha <T> {
 			throw new Exception("Underlow - Esvaziamento de Pilha");
 		}
    	}
-   	// obtém o total de elementos 
+   	//pega o total de elementos 
    	//armazenados na Pilha
    	public int sizeElements() {
 	  return topoPilha+1;
