@@ -1,13 +1,9 @@
 package model;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.time.format.DateTimeFormatter;
 
-/**
- * Classe de dominio que representa uma solicitacao de atendimento.
- * Encapsulamento: todos os atributos sao privados e o acesso e feito por
- * metodos publicos (getters/setters).
- */
+// representa uma solicitacao de atendimento, tudo privado + get/set (encapsulamento)
 public class Solicitacao {
 
     //estados possiveis da solicitacao (constantes evitam erro de digitacao)
@@ -21,7 +17,7 @@ public class Solicitacao {
     private String descricao;
     private String categoria;
     private int prioridade;
-    private LocalDateTime dataHoraAbertura;
+    private Date dataHoraAbertura;
     private String status;
     private String responsavel;
 
@@ -32,8 +28,8 @@ public class Solicitacao {
         this.descricao = descricao;
         this.categoria = categoria;
         this.prioridade = prioridade;
-        this.dataHoraAbertura = LocalDateTime.now();
-        this.status = AGUARDANDO;
+        this.dataHoraAbertura = new Date();
+        this.status = AGUARDANDO; // nasce aguardando, sem responsavel ainda
         this.responsavel = "-";
     }
 
@@ -57,7 +53,7 @@ public class Solicitacao {
         return prioridade;
     }
 
-    public LocalDateTime getDataHoraAbertura() {
+    public Date getDataHoraAbertura() {
         return dataHoraAbertura;
     }
 
@@ -77,18 +73,17 @@ public class Solicitacao {
         this.responsavel = responsavel;
     }
 
-    // Representacao textual da solicitacao, usada quando o objeto e impresso.
-
+    //epresentacao textual da solicitacao, usada quando o objeto e impresso.
+    // é o que aparece quando da print na solicitacao (fila/historico usam isso)    
     @Override
     public String toString() {
-        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         StringBuilder sb = new StringBuilder();
         sb.append("#").append(codigo)
           .append(" | ").append(solicitante)
           .append(" | ").append(categoria)
           .append(" | prio ").append(prioridade)
           .append(" | ").append(status)
-          .append(" | aberta em ").append(dataHoraAbertura.format(fmt))
+          .append(" | aberta em ").append(dataHoraAbertura)
           .append(" | resp.: ").append(responsavel)
           .append("\n    Descricao: ").append(descricao);
         return sb.toString();

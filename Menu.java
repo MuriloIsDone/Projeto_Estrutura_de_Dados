@@ -1,4 +1,3 @@
-
 package ui;
 
 import java.util.Scanner;
@@ -7,8 +6,7 @@ import model.Operacao;
 import model.Solicitacao;
 import service.CentralAtendimento;
 
-//camada de interface com o usuario. Nao contem regra de negocio,
-//apenas le dados, chama a CentralAtendimento e exibe resultados.
+// camada de interface, so le dado e chama a central, regra de negocio fica la
 public class Menu {
 
     private Scanner entrada;
@@ -39,8 +37,7 @@ public class Menu {
                     case 0: System.out.println("Encerrando o sistema. Ate mais!"); break;
                 }
             } catch (Exception e) {
-                //todas as excecoes lancadas pelas estruturas e pela regra de
-                // negocio sao tratadas aqui, em um unico ponto.
+                // pego tudo aqui pra n ficar repetindo try/catch em cada opcao
                 System.out.println("  >> Aviso: " + e.getMessage());
             }
             if (opcao != 0) pausar();
@@ -51,98 +48,92 @@ public class Menu {
     private void exibirMenu() {
         System.out.println();
         System.out.println("========================================");
-        System.out.println("         CENTRAL DE ATENDIMENTO         ");
+        System.out.println("         CENTRAL DE ATENDÍMENTO         ");
         System.out.println("========================================");
-        System.out.println("1 - Cadastrar nova solicitacao");
-        System.out.println("2 - Consultar proxima solicitacao");
-        System.out.println("3 - Atender proxima solicitacao");
-        System.out.println("4 - Exibir fila de solicitacoes");
-        System.out.println("5 - Exibir quantidade de solicitacoes");
-        System.out.println("6 - Consultar ultima operacao realizada");
-        System.out.println("7 - Exibir historico de operacoes");
-        System.out.println("8 - Desfazer ultima operacao");
-        System.out.println("9 - Exibir resumo do sistema");
-        System.out.println("0 - Encerrar");
+        System.out.println("1 - cadastrar nova solicitacao");
+        System.out.println("2 - consultar proxima solicitacao");
+        System.out.println("3 - atender proxima solicitacao");
+        System.out.println("4 - exibir fila de solicitacoes");
+        System.out.println("5 - exibir quantidade de solicitacoes");
+        System.out.println("6 - eonsultar ultima operacao realizada");
+        System.out.println("7 - exibir historico de operacoes");
+        System.out.println("8 - desfazer ultima operacao");
+        System.out.println("9 - exibir resumo do sistema");
+        System.out.println("0 - encerrar");
         System.out.println("----------------------------------------");
     }
 
-    // ---------------------------------------------------------------- opcoes
+    //opcoes
 
     private void cadastrarSolicitacao() throws Exception {
-        System.out.println("--- Cadastro de solicitacao ---");
-        String solicitante = lerTexto("Nome do solicitante: ");
-        String descricao   = lerTexto("Descricao do problema: ");
-        String categoria   = lerTexto("Categoria (ex.: REDE, HARDWARE, SOFTWARE): ");
-        int prioridade     = lerInteiro("Prioridade (1 = alta ... 5 = baixa): ", 1, 5);
+        System.out.println("- Cadastro de solicitacao -");
+        String solicitante = lerTexto("Nome do solicitante:");
+        String descricao   = lerTexto("descricao do problema: ");
+        String categoria   = lerTexto("categoria (tipo: Rede, HARDWARE, SOFTWARE):");
+        int prioridade     = lerInteiro("prioridade (1 = alta ... 5 = baixa):", 1, 5);
 
         Solicitacao s = central.cadastrar(solicitante, descricao, categoria, prioridade);
-        System.out.println("  Solicitacao cadastrada e inserida no fim da fila:");
+        System.out.println("solicitacao cadastrada e inserida no fim da fila:");
         System.out.println("  " + s);
     }
 
     private void consultarProxima() throws Exception {
-        System.out.println("  Proxima da fila (sem remover):");
+        System.out.println("proxima da fila (sem remover):");
         System.out.println("  " + central.consultarProxima());
     }
 
     private void atenderProxima() throws Exception {
-        Solicitacao proxima = central.consultarProxima();   // valida antes de pedir dados
-        System.out.println("  Sera atendida: " + proxima);
-        String responsavel = lerTexto("Responsavel pelo atendimento: ");
+        Solicitacao proxima = central.consultarProxima(); // valida antes de pedir o nome do responsavel   // valida antes de pedir dados
+        System.out.println("sera atendida: " + proxima);
+        String responsavel = lerTexto("responsavel pelo atendimento: ");
         Solicitacao s = central.atenderProxima(responsavel);
-        System.out.println("  Atendimento concluido:");
+        System.out.println("atendimento concluido:");
         System.out.println("  " + s);
     }
 
     private void exibirFila() throws Exception {
-        System.out.println("--- Fila de solicitacoes (do inicio para o fim) ---");
+        System.out.println("...fila de solicitacoes (do inicio para o fim)...");
         System.out.print(central.filaFormatada());
     }
 
     private void exibirQuantidade() {
-        System.out.println("  Solicitacoes aguardando atendimento: "
+        System.out.println("solicitacoes aguardando atendimento: "
                 + central.quantidadeAguardando());
-        System.out.println("  Fila vazia? " + (central.filaVazia() ? "sim" : "nao"));
+        System.out.println("fila vazia? " + (central.filaVazia() ? "sim" : "nao"));
     }
 
     private void consultarUltimaOperacao() throws Exception {
         Operacao op = central.ultimaOperacao();
-        System.out.println("  Ultima operacao (topo da pilha): " + op);
+        System.out.println("ultima operacao (topo da pilha): " + op);
     }
 
     private void exibirHistorico() throws Exception {
-        System.out.println("--- Historico de operacoes (da mais recente para a mais antiga) ---");
+        System.out.println("historico de operacoes (da mais recente para a mais antiga)");
         System.out.print(central.historicoFormatado());
     }
 
     private void desfazerUltimaOperacao() throws Exception {
         Solicitacao s = central.desfazerUltimaOperacao();
-        System.out.println("  Atendimento desfeito. A solicitacao voltou para o inicio da fila:");
+        System.out.println("atendimento desfeito. a solicitacao voltou para o inicio da fila:");
         System.out.println("  " + s);
     }
 
     private void exibirResumo() {
-        System.out.println("--- Resumo do sistema ---");
+        System.out.println("resumo do sistema");
         System.out.println(central.resumo());
     }
 
-    //leitura validada
+    //leitura simplificada
 
     private String lerTexto(String rotulo) {
-        String texto;
-        do {
-            System.out.print(rotulo);
-            texto = entrada.nextLine().trim();
-            if (texto.isEmpty())
-                System.out.println("  >> O campo nao pode ficar vazio.");
-        } while (texto.isEmpty());
-        return texto;
+        System.out.print(rotulo);
+        return entrada.nextLine();
     }
 
     private int lerInteiro(String rotulo, int min, int max) {
         while (true) {
             System.out.print(rotulo);
-            String linha = entrada.nextLine().trim();
+            String linha = entrada.nextLine(); 
             try {
                 int valor = Integer.parseInt(linha);
                 if (valor < min || valor > max)

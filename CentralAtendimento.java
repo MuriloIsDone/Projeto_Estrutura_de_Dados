@@ -5,6 +5,9 @@ import estruturas.Pilha;
 import model.Operacao;
 import model.Solicitacao;
 
+// regra de negocio, usa so as duas estruturas do prof (fila e pilha em vetor)
+// n pode usar Collections (Stack/Queue/ArrayList etc), o vetor de dentro
+// nunca é mexido direto, só via enqueue/dequeue e push/pop mesmo
 public class CentralAtendimento {
 
     private static final int TAM_FILA = 50;
@@ -25,7 +28,7 @@ public class CentralAtendimento {
         this.totalAtendidas = 0;
     }
 
-    // 1- cadastrar nova solicitacao
+    //cadastrar nova solicitacao
     public Solicitacao cadastrar(String solicitante, String descricao,
                                  String categoria, int prioridade) throws Exception {
         if (filaEspera.qIsFull())
@@ -42,20 +45,20 @@ public class CentralAtendimento {
         return s;
     }
 
-    // 2- consultar proxima solicitacao (sem remover neh)
+    //consultar proxima solicitacao (sem remover neh)
     public Solicitacao consultarProxima() throws Exception {
         if (filaEspera.qIsEmpty())
             throw new Exception("Nao ha solicitacoes aguardando atendimento.");
         return filaEspera.front();
     }
 
-    // 3- atender proxima solicitacao (remove do inicio da fila - fifo)
+    //atender proxima solicitacao (remove do inicio da fila - fifo)
     public Solicitacao atenderProxima(String responsavel) throws Exception {
         if (filaEspera.qIsEmpty())
             throw new Exception("Nao ha solicitacoes na fila para atender.");
         verificaEspacoHistorico();
 
-        Solicitacao s = filaEspera.dequeue();
+        Solicitacao s = filaEspera.dequeue(); // sempre tira quem chegou primeiro
         s.setResponsavel(responsavel);
         s.setStatus(Solicitacao.CONCLUIDA);
         registrarOperacao(new Operacao(Operacao.ATENDIMENTO, s));
@@ -63,9 +66,9 @@ public class CentralAtendimento {
         return s;
     }
 
-    // 4 - Exibir fila de solicitacoes
-    // a fila e percorrida girando os elementos... retira do inicio e devolve
-    // ao fim. apos qtde rotacoes a fila volta exatamente a ordem original.
+    // percorre a fila girando: tira do inicio e bota no fim, dá a volta
+    // toda e a fila volta igualzinha, é o unico jeito de "olhar tudo" sem
+    // um iterator na estrutura
     public String filaFormatada() throws Exception {
         if (filaEspera.qIsEmpty())
             return "  (fila vazia)";
@@ -80,7 +83,7 @@ public class CentralAtendimento {
         return sb.toString();
     }
 
-    // 5- quantidade de solicitacoes aguardando
+    // quantidade de solicitacoes aguardando
     public int quantidadeAguardando() {
         return filaEspera.totalElementos();
     }
@@ -89,16 +92,15 @@ public class CentralAtendimento {
         return filaEspera.qIsEmpty();
     }
 
-    // 6- consultar ultima operacao realizada (topo da pilha, sem remover)
+    //consultar ultima operacao realizada (topo da pilha, sem remover)
     public Operacao ultimaOperacao() throws Exception {
         if (historico.isEmpty())
             throw new Exception("Nenhuma operacao foi realizada ainda.");
         return historico.topo();
     }
 
-    // 7- exibir historico em ordem inversa lifo
-    // desempilha tudo para uma pilha auxiliar (printa no caminho) e
-    // depois devolve, preservando a ordem original.
+    // desempilha tudo pra uma pilha auxiliar (e imprime no caminho), dps
+    // devolve pra pilha original, assim inverte a ordem pra mostrar e desinverte de novo pra n perder nada
     public String historicoFormatado() throws Exception {
         if (historico.isEmpty())
             return "  (nenhuma operacao registrada)";
@@ -117,18 +119,13 @@ public class CentralAtendimento {
         return sb.toString();
     }
 
-    // ------------------------------------------------------------------
-    // 8 - desfaz a ultima operacao
-    // APENAASSS operacoes de atendimento podem ser desfeitas, tipo, a solicitacao
-    // volta para a posicao que estava antes, ou sejaaaa, o inicio da fila.
-    // Para isso vai usar uma fila auxiliar da mesma classe fornecida pelo
-    // professor (proibido mexer no vetor interno).
-    // ------------------------------------------------------------------
+    // só desfaz ATENDIMENTO. a solicitacao volta pro inicio da fila (onde
+    // ela ja tava antes de ser atendida), por isso a fila auxiliar
     public Solicitacao desfazerUltimaOperacao() throws Exception {
         if (historico.isEmpty())
             throw new Exception("Nao ha operacoes para desfazer.");
 
-        Operacao op = historico.topo();
+        Operacao op = historico.topo(); // só espia antes de decidir se pode desfazer
         if (!op.getTipo().equals(Operacao.ATENDIMENTO))
             throw new Exception("A ultima operacao foi um " + op.getTipo()
                     + ". Somente operacoes de ATENDIMENTO podem ser desfeitas.");
@@ -142,7 +139,8 @@ public class CentralAtendimento {
         s.setStatus(Solicitacao.AGUARDANDO);
         s.setResponsavel("-");
 
-        // coloca dnv no inicio: monta uma fila auxiliar com ela na frente
+        // como só tem enqueue (que bota no fim), monto uma fila aux com a
+        // solicitacao na frente e o resto da fila atras, dps devolvo tudo
         FilaCircular<Solicitacao> aux = new FilaCircular<Solicitacao>(TAM_FILA);
         aux.enqueue(s);
         while (!filaEspera.qIsEmpty())
@@ -166,8 +164,8 @@ public class CentralAtendimento {
         return sb.toString();
     }
 
-    // pfv verifica, antes de alterar a fila, se ainda cabe uma operacao no
-    // historico. Assim o sistema nunca fica em estado inconsistente...
+    // confere antes de mexer na fila, senao corre risco de tirar/inserir
+    // e so dps descobrir q n da pra registrar a operacao
     private void verificaEspacoHistorico() throws Exception {
         if (historico.isFull())
             throw new Exception("O historico de operacoes esta cheio (capacidade "

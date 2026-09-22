@@ -1,11 +1,11 @@
 package estruturas;
 
 public class FilaCircular <T>{
-	// Constante e Atributos Privados
+	// classe do prof, pedro nn mexe aqui
 	private static final int TAM_DEFAULT = 100;
-	private int inicio, fim, qtde;
+	private int inicio, fim, qtde; // inicio = quem ta na frente, fim = onde entra o proximo
 	private T e[ ];
-	// Métodos públicos
+
 	public FilaCircular(int tamanho) {// construtor 1 (com tamanho)
 		  this.inicio = this.fim = this.qtde = 0;
 		  e = (T[]) new Object[tamanho];
@@ -20,7 +20,7 @@ public class FilaCircular <T>{
 		return (qtde == 0);
 	}
 	
-	// Verifica se a fila está cheia
+	//verifica se a fila esta cheia
     public boolean qIsFull() {
     	return (qtde == e.length); 	
     }
@@ -29,7 +29,7 @@ public class FilaCircular <T>{
 	public void enqueue(T e) throws Exception {
 		if (! qIsFull( )){
 			    this.e[this.fim++] = e;
-			    this.fim = this.fim % this.e.length;
+			    this.fim = this.fim % this.e.length; // o % que faz voltar pro comeco do vetor quando estoura
 			    this.qtde++;
 		}
 		else 
@@ -40,7 +40,7 @@ public class FilaCircular <T>{
     	  T aux;
     	  if (! qIsEmpty( )){
     	   aux =  this.e[ this.inicio];
-    	   this.inicio = ++this.inicio % this.e.length;
+    	   this.inicio = ++this.inicio % this.e.length; // mesma logica do fim, anda em circulo
     	   this.qtde--;
     	   return aux;
     	  }else{
@@ -56,7 +56,7 @@ public class FilaCircular <T>{
 			throw new Exception("underflow - Esvaziamento de Fila");
 		}			
 	}
-	// retorna quem está no final da fila caso ela não esteja vazia
+	//retorna quem está no final da fila caso ela não esteja vazia
 	public T rear() throws Exception {
 		if (! qIsEmpty()){
 			  int pfinal;
@@ -72,15 +72,12 @@ public class FilaCircular <T>{
 		return qtde;
 	}
 	
-	// Sobrescrita/sobreposição (override) do método toString(), que veio da superclasse Object.
-	// O retorno do método toString() é a representação de um objeto em formato string, e toString()
-	// geralmente é executado (de forma implícita) quando passamos um objeto ao System.out.print*().
-	//
-	// Experimente incluir o seguinte código na main() e veja a saída:
-	// FilaCircular<TIPO> f = new FilaCircular<TIPO>();
-	// System.out.println(f);
-	//
-	// Depois, remova/comente o método toString() abaixo e rode o código acima novamente.
+	// sobrescrita/sobreposição (override) do método toString(), que veio da superclasse Object.
+
+	// retorno do método toString() é a representação de um objeto em formato string, e toString()
+	// geralmente é executado (de forma implicita...diretona mesmo) quando passamos um objeto no system.out.print*().
+	// Experimente incluir o seguinte codigo na main e veja a saida, filaCircular<tipo> f = new filaCircular<tipo>();  system.out.println(f);
+	// eeee depois, remova o forma tostring() abaixo e rode o codigo acima novamente, em geral.
 	@Override
 	public String toString()  {
 		try {
@@ -100,7 +97,7 @@ public class FilaCircular <T>{
 		
 			sb.append("\nConteudo da Fila': [ ");
 			if (qtde != 0) {
-				if (indiceNovo <= inicio) {
+				if (indiceNovo <= inicio) { // deu a volta no vetor, entao percorre em duas partes
 					for (int i = inicio; i < e.length; ++i)
 						sb.append("[" + e[i] + "]");
 					for (int i = 0; i < indiceNovo; ++i)

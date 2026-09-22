@@ -2,7 +2,7 @@ package app;
 
 import ui.Menu;
 
-// menu do tao trabalhoso... Projeto de estrutura de dados 1
+// só dispara o menu, sem regra de negocio aqui
 public class Main {
     public static void main(String[] args) {
         Menu menu = new Menu();

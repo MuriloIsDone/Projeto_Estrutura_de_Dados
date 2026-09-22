@@ -1,10 +1,10 @@
 package estruturas;
 
-public class Pilha <T> {
-	private static final int TAM_DEFAULT = 100;
-	private	int topoPilha;
+public class Pilha <T> {   // classe do prof tb, deixa assim
+	private static final int TAM_DEFAULT = 100; //defini um tamanho padrao para a pilha
+	private	int topoPilha; // indice do topo, começa em -1 pq ta vazia
     private	T e[ ];
-   	public	Pilha(int tamanho) {  // construtor 1
+   	public	Pilha(int tamanho) {  // Nosso primeiro construtor, amem..
    		this.e = (T[]) new Object[tamanho];
    		this.topoPilha = -1;
    	}
@@ -25,7 +25,7 @@ public class Pilha <T> {
    	//no topo da pilha
    	public void push(T e) throws Exception{
    		if (! this.isFull( ))
-   			this.e[++this.topoPilha] = e;
+   			this.e[++this.topoPilha] = e; // ja incrementa e usa o indice novo
    		else 
    			throw new Exception("overflow - Estouro de Pilha");
    	}
@@ -33,7 +33,7 @@ public class Pilha <T> {
    	//do topo da pilha
    	public T pop() throws Exception{
    		if (! this.isEmpty( ))
-   			return this.e[this.topoPilha--];
+   			return this.e[this.topoPilha--]; // pega o de cima e so dps desce o indice
    		else{
    			throw new Exception( "underflow - Esvaziamento de Pilha");
    		}  
@@ -50,13 +50,12 @@ public class Pilha <T> {
    	//pega o total de elementos 
    	//armazenados na Pilha
    	public int sizeElements() {
-	  return topoPilha+1;
+	  return topoPilha+1; // +1 pq o indice começa em -1
    	}
    	   
 	// Sobrescrita/sobreposição (override) do método toString(), que veio da superclasse Object.
 	// O retorno do método toString() é a representação de um objeto em formato string, e toString()
 	// geralmente é executado (de forma implícita) quando passamos um objeto ao System.out.print*().
-	//
 	// Experimente incluir o seguinte código na main() e veja a saída:
 	// Pilha p = new Pilha();
 	// System.out.println(p);
