@@ -33,7 +33,16 @@ public class Menu {
                     case 6: consultarUltimaOperacao(); break;
                     case 7: exibirHistorico();       break;
                     case 8: desfazerUltimaOperacao(); break;
-                    case 9: exibirResumo();          break;
+                    case 9:
+                    case 10:
+                    case 11:
+                    case 12:
+                    case 13:
+                    case 14:
+                    case 15:
+                    case 16:
+                    case 17:
+                    case 18: exibirResumo();          break;
                     case 0: System.out.println("Encerrando o sistema. Ate mais!"); break;
                 }
             } catch (Exception e) {
@@ -48,19 +57,32 @@ public class Menu {
     private void exibirMenu() {
         System.out.println();
         System.out.println("========================================");
-        System.out.println("         CENTRAL DE ATENDÍMENTO         ");
-        System.out.println("========================================");
+        System.out.println("  CENTRAL DE ATENDÍMENTO E SERVIÇOS     ");
+        System.out.println("========================================\n");
+        System.out.println("ATENDIMENTO");
         System.out.println("1 - cadastrar nova solicitacao");
         System.out.println("2 - consultar proxima solicitacao");
         System.out.println("3 - atender proxima solicitacao");
         System.out.println("4 - exibir fila de solicitacoes");
-        System.out.println("5 - exibir quantidade de solicitacoes");
+        System.out.println("5 - exibir quantidade de solicitacoes\n");
+        System.out.println("OPERAÇÕES");
         System.out.println("6 - eonsultar ultima operacao realizada");
         System.out.println("7 - exibir historico de operacoes");
-        System.out.println("8 - desfazer ultima operacao");
-        System.out.println("9 - exibir resumo do sistema");
+        System.out.println("8 - desfazer ultima operacao\n");
+        System.out.println("CADASTRO GERAL");
+        System.out.println("9 - Exibir todas as solicitações");
+        System.out.println("10 - Pesquisar solicitação por código");
+        System.out.println("11 - Remover solicitação");
+        System.out.println("12 - Exibir solicitações por status");
+        System.out.println("13 - Exibir solicitações por categoria\n");
+        System.out.println("HISTÓRICO DE ATENDIMENTOS");
+        System.out.println("14 - Exibir do primeiro ao último");
+        System.out.println("15 - Exibir do último ao primeiro");
+        System.out.println("16 - Navegar pelo histórico");
+        System.out.println("17 - Pesquisar atendimento\n");
+        System.out.println("RELATÓRIOS");
+        System.out.println("18 - exibir resumo do sistema\n");
         System.out.println("0 - encerrar");
-        System.out.println("----------------------------------------");
     }
 
     //opcoes
