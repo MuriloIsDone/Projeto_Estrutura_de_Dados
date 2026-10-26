@@ -10,7 +10,7 @@ import model.Solicitacao;
 // nunca é mexido direto, só via enqueue/dequeue e push/pop mesmo
 public class CentralAtendimento {
 
-    private static final int TAM_FILA = 2;
+    private static final int TAM_FILA = 100;
     private static final int TAM_PILHA = 100;
 
     private FilaCircular<Solicitacao> filaEspera;
@@ -103,7 +103,7 @@ public class CentralAtendimento {
     // devolve pra pilha original, assim inverte a ordem pra mostrar e desinverte de novo pra n perder nada
     public String historicoFormatado() throws Exception {
         if (historico.isEmpty())
-            return "  (nenhuma operacao registrada)";
+            return "  (nenhuma operacao realidade)";
 
         Pilha<Operacao> aux = new Pilha<Operacao>(TAM_PILHA);
         StringBuilder sb = new StringBuilder();
@@ -169,7 +169,7 @@ public class CentralAtendimento {
     private void verificaEspacoHistorico() throws Exception {
         if (historico.isFull())
             throw new Exception("O historico de operacoes esta cheio (capacidade "
-                    + TAM_PILHA + "). Desfaca ou reinicie o sistema.");
+                    + TAM_PILHA + "Desfaça ou reinicie o sistema.");
     }
 
     private void registrarOperacao(Operacao op) throws Exception {

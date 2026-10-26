@@ -1,0 +1,112 @@
+Escolha uma opção: 
+--- Cadastro de solicitação ---
+Nome do solicitante: Descrição do problema: Categoria (ex.: REDE, HARDWARE, SOFTWARE): Prioridade (1 = alta, 2 = baixa):   Solicitação cadastrada no cadastro geral e inserida no fim da fila de prioridade 1:
+  #101 | Ana Souza | HARDWARE | prioridade 1 | AGUARDANDO | aberta em 25/10/2026 20:31 | responsável: -
+      Descrição: Impressora não imprime
+
+Escolha uma opção: 
+--- Cadastro de solicitação ---
+Nome do solicitante: Descrição do problema: Categoria (ex.: REDE, HARDWARE, SOFTWARE): Prioridade (1 = alta, 2 = baixa):   Solicitação cadastrada no cadastro geral e inserida no fim da fila de prioridade 2:
+  #102 | Bruno Lima | REDE | prioridade 2 | AGUARDANDO | aberta em 25/10/2026 20:31 | responsável: -
+      Descrição: Sem acesso à VPN
+
+Escolha uma opção: 
+--- Cadastro de solicitação ---
+Nome do solicitante: Descrição do problema: Categoria (ex.: REDE, HARDWARE, SOFTWARE): Prioridade (1 = alta, 2 = baixa):   Solicitação cadastrada no cadastro geral e inserida no fim da fila de prioridade 1:
+  #103 | Carla Dias | SOFTWARE | prioridade 1 | AGUARDANDO | aberta em 25/10/2026 20:31 | responsável: -
+      Descrição: Erro na folha de pagamento
+
+Escolha uma opção: 
+--- Cadastro de solicitação ---
+Nome do solicitante: Descrição do problema: Categoria (ex.: REDE, HARDWARE, SOFTWARE): Prioridade (1 = alta, 2 = baixa):   Solicitação cadastrada no cadastro geral e inserida no fim da fila de prioridade 2:
+  #104 | Davi Rocha | HARDWARE | prioridade 2 | AGUARDANDO | aberta em 25/10/2026 20:31 | responsável: -
+      Descrição: Monitor sem imagem
+
+Escolha uma opção: 
+--- Fila de prioridade 1 (alta) ---
+  1º -> #101 | Ana Souza | HARDWARE | prioridade 1 | AGUARDANDO | aberta em 25/10/2026 20:31 | responsável: -
+      Descrição: Impressora não imprime
+  2º -> #103 | Carla Dias | SOFTWARE | prioridade 1 | AGUARDANDO | aberta em 25/10/2026 20:31 | responsável: -
+      Descrição: Erro na folha de pagamento
+--- Fila de prioridade 2 (baixa) ---
+  1º -> #102 | Bruno Lima | REDE | prioridade 2 | AGUARDANDO | aberta em 25/10/2026 20:31 | responsável: -
+      Descrição: Sem acesso à VPN
+  2º -> #104 | Davi Rocha | HARDWARE | prioridade 2 | AGUARDANDO | aberta em 25/10/2026 20:31 | responsável: -
+      Descrição: Monitor sem imagem
+
+Escolha uma opção: 
+  Prioridade 1 (alta) : 2
+  Prioridade 2 (baixa): 2
+  Total aguardando    : 4
+
+Escolha uma opção: 
+--- Seleção da próxima solicitação ---
+  Regra: a fila de prioridade 1 (alta) é atendida primeiro; após 3 atendimentos seguidos dela, com a fila 2 (baixa) esperando,
+  uma solicitação da fila de prioridade 2 é atendida.
+  Fila alta (1): 2 aguardando | Fila baixa (2): 2 aguardando
+  Atendimentos seguidos da fila alta: 0 de 3
+  Próxima a ser atendida: fila ALTA (prioridade 1)
+  #101 | Ana Souza | HARDWARE | prioridade 1 | AGUARDANDO | aberta em 25/10/2026 20:31 | responsável: -
+      Descrição: Impressora não imprime
+
+Escolha uma opção: 
+  Será atendida: #101 | Ana Souza | HARDWARE | prioridade 1 | AGUARDANDO | aberta em 25/10/2026 20:31 | responsável: -
+      Descrição: Impressora não imprime
+Responsável pelo atendimento:   Atendimento concluído:
+  #101 | Ana Souza | HARDWARE | prioridade 1 | CONCLUIDA | aberta em 25/10/2026 20:31 | responsável: Técnico João
+      Descrição: Impressora não imprime
+
+Escolha uma opção: 
+  Será atendida: #103 | Carla Dias | SOFTWARE | prioridade 1 | AGUARDANDO | aberta em 25/10/2026 20:31 | responsável: -
+      Descrição: Erro na folha de pagamento
+Responsável pelo atendimento:   Atendimento concluído:
+  #103 | Carla Dias | SOFTWARE | prioridade 1 | CONCLUIDA | aberta em 25/10/2026 20:31 | responsável: Técnico João
+      Descrição: Erro na folha de pagamento
+
+Escolha uma opção: 
+--- Seleção da próxima solicitação ---
+  Regra: a fila de prioridade 1 (alta) é atendida primeiro; após 3 atendimentos seguidos dela, com a fila 2 (baixa) esperando,
+  uma solicitação da fila de prioridade 2 é atendida.
+  Fila alta (1): 0 aguardando | Fila baixa (2): 2 aguardando
+  Atendimentos seguidos da fila alta: 2 de 3
+  Próxima a ser atendida: fila BAIXA (prioridade 2)
+  #102 | Bruno Lima | REDE | prioridade 2 | AGUARDANDO | aberta em 25/10/2026 20:31 | responsável: -
+      Descrição: Sem acesso à VPN
+
+Escolha uma opção: 
+--- Histórico recente (da mais recente para a mais antiga) ---
+  [25/10/2026 20:31:05] ATENDIMENTO - solicitação #103 (Carla Dias)
+  [25/10/2026 20:31:05] ATENDIMENTO - solicitação #101 (Ana Souza)
+  [25/10/2026 20:31:05] CADASTRO - solicitação #104 (Davi Rocha)
+  [25/10/2026 20:31:05] CADASTRO - solicitação #103 (Carla Dias)
+  [25/10/2026 20:31:05] CADASTRO - solicitação #102 (Bruno Lima)
+  [25/10/2026 20:31:05] CADASTRO - solicitação #101 (Ana Souza)
+
+Escolha uma opção: 
+  Atendimento desfeito. A solicitação voltou para o início da fila de prioridade 1:
+  #103 | Carla Dias | SOFTWARE | prioridade 1 | AGUARDANDO | aberta em 25/10/2026 20:31 | responsável: -
+      Descrição: Erro na folha de pagamento
+
+Escolha uma opção: 
+--- Fila de prioridade 1 (alta) ---
+  1º -> #103 | Carla Dias | SOFTWARE | prioridade 1 | AGUARDANDO | aberta em 25/10/2026 20:31 | responsável: -
+      Descrição: Erro na folha de pagamento
+--- Fila de prioridade 2 (baixa) ---
+  1º -> #102 | Bruno Lima | REDE | prioridade 2 | AGUARDANDO | aberta em 25/10/2026 20:31 | responsável: -
+      Descrição: Sem acesso à VPN
+  2º -> #104 | Davi Rocha | HARDWARE | prioridade 2 | AGUARDANDO | aberta em 25/10/2026 20:31 | responsável: -
+      Descrição: Monitor sem imagem
+
+Escolha uma opção: 
+--- Resumo do sistema ---
+  Solicitações no cadastro geral ..: 4
+    AGUARDANDO ....................: 3
+    CONCLUIDA .....................: 1
+    CANCELADA .....................: 0
+  Aguardando na fila de prioridade 1: 1
+  Aguardando na fila de prioridade 2: 2
+  Atendimentos concluídos (histórico): 1
+  Operações no histórico recente ..: 5
+
+Escolha uma opção: 
+Encerrando o sistema. Até mais!

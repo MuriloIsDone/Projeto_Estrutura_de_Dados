@@ -1,0 +1,107 @@
+Escolha uma opção: 
+--- Cadastro de solicitação ---
+Nome do solicitante: Descrição do problema: Categoria (ex.: REDE, HARDWARE, SOFTWARE): Prioridade (1 = alta, 2 = baixa):   Solicitação cadastrada no cadastro geral e inserida no fim da fila de prioridade 1:
+  #101 | Ana Souza | HARDWARE | prioridade 1 | AGUARDANDO | aberta em 25/10/2026 20:31 | responsável: -
+      Descrição: Impressora não imprime
+
+Escolha uma opção: 
+--- Cadastro de solicitação ---
+Nome do solicitante: Descrição do problema: Categoria (ex.: REDE, HARDWARE, SOFTWARE): Prioridade (1 = alta, 2 = baixa):   Solicitação cadastrada no cadastro geral e inserida no fim da fila de prioridade 2:
+  #102 | Bruno Lima | REDE | prioridade 2 | AGUARDANDO | aberta em 25/10/2026 20:31 | responsável: -
+      Descrição: Sem acesso à VPN
+
+Escolha uma opção: 
+--- Cadastro de solicitação ---
+Nome do solicitante: Descrição do problema: Categoria (ex.: REDE, HARDWARE, SOFTWARE): Prioridade (1 = alta, 2 = baixa):   Solicitação cadastrada no cadastro geral e inserida no fim da fila de prioridade 1:
+  #103 | Carla Dias | SOFTWARE | prioridade 1 | AGUARDANDO | aberta em 25/10/2026 20:31 | responsável: -
+      Descrição: Erro na folha de pagamento
+
+Escolha uma opção: 
+--- Cadastro de solicitação ---
+Nome do solicitante: Descrição do problema: Categoria (ex.: REDE, HARDWARE, SOFTWARE): Prioridade (1 = alta, 2 = baixa):   Solicitação cadastrada no cadastro geral e inserida no fim da fila de prioridade 1:
+  #104 | Davi Rocha | REDE | prioridade 1 | AGUARDANDO | aberta em 25/10/2026 20:31 | responsável: -
+      Descrição: Monitor sem imagem
+
+Escolha uma opção: 
+Código da solicitação a cancelar:   Solicitação cancelada e retirada da fila de espera:
+  #102 | Bruno Lima | REDE | prioridade 2 | CANCELADA | aberta em 25/10/2026 20:31 | responsável: -
+      Descrição: Sem acesso à VPN
+
+Escolha uma opção: 
+Código da solicitação a remover:   Solicitação removida do cadastro geral:
+  #102 | Bruno Lima | REDE | prioridade 2 | CANCELADA | aberta em 25/10/2026 20:31 | responsável: -
+      Descrição: Sem acesso à VPN
+
+Escolha uma opção: 
+--- Cadastro geral de solicitações ---
+  #101 | Ana Souza | HARDWARE | prioridade 1 | AGUARDANDO | aberta em 25/10/2026 20:31 | responsável: -
+      Descrição: Impressora não imprime
+  #103 | Carla Dias | SOFTWARE | prioridade 1 | AGUARDANDO | aberta em 25/10/2026 20:31 | responsável: -
+      Descrição: Erro na folha de pagamento
+  #104 | Davi Rocha | REDE | prioridade 1 | AGUARDANDO | aberta em 25/10/2026 20:31 | responsável: -
+      Descrição: Monitor sem imagem
+
+Escolha uma opção: 
+Código da solicitação:   #103 | Carla Dias | SOFTWARE | prioridade 1 | AGUARDANDO | aberta em 25/10/2026 20:31 | responsável: -
+      Descrição: Erro na folha de pagamento
+
+Escolha uma opção: 
+Status (AGUARDANDO, EM_ATENDIMENTO, CONCLUIDA ou CANCELADA):   #101 | Ana Souza | HARDWARE | prioridade 1 | AGUARDANDO | aberta em 25/10/2026 20:31 | responsável: -
+      Descrição: Impressora não imprime
+  #103 | Carla Dias | SOFTWARE | prioridade 1 | AGUARDANDO | aberta em 25/10/2026 20:31 | responsável: -
+      Descrição: Erro na folha de pagamento
+  #104 | Davi Rocha | REDE | prioridade 1 | AGUARDANDO | aberta em 25/10/2026 20:31 | responsável: -
+      Descrição: Monitor sem imagem
+
+Escolha uma opção: 
+Categoria:   #104 | Davi Rocha | REDE | prioridade 1 | AGUARDANDO | aberta em 25/10/2026 20:31 | responsável: -
+      Descrição: Monitor sem imagem
+
+Escolha uma opção: 
+  Será atendida: #101 | Ana Souza | HARDWARE | prioridade 1 | AGUARDANDO | aberta em 25/10/2026 20:31 | responsável: -
+      Descrição: Impressora não imprime
+Responsável pelo atendimento:   Atendimento concluído:
+  #101 | Ana Souza | HARDWARE | prioridade 1 | CONCLUIDA | aberta em 25/10/2026 20:31 | responsável: Técnico João
+      Descrição: Impressora não imprime
+
+Escolha uma opção: 
+  Será atendida: #103 | Carla Dias | SOFTWARE | prioridade 1 | AGUARDANDO | aberta em 25/10/2026 20:31 | responsável: -
+      Descrição: Erro na folha de pagamento
+Responsável pelo atendimento:   Atendimento concluído:
+  #103 | Carla Dias | SOFTWARE | prioridade 1 | CONCLUIDA | aberta em 25/10/2026 20:31 | responsável: Técnica Maria
+      Descrição: Erro na folha de pagamento
+
+Escolha uma opção: 
+  Será atendida: #104 | Davi Rocha | REDE | prioridade 1 | AGUARDANDO | aberta em 25/10/2026 20:31 | responsável: -
+      Descrição: Monitor sem imagem
+Responsável pelo atendimento:   Atendimento concluído:
+  #104 | Davi Rocha | REDE | prioridade 1 | CONCLUIDA | aberta em 25/10/2026 20:31 | responsável: Técnico João
+      Descrição: Monitor sem imagem
+
+Escolha uma opção: 
+--- Atendimentos concluídos (do primeiro ao último) ---
+  Atendimento nº 1 | solicitação #101 | Ana Souza | HARDWARE | prioridade 1 | responsável: Técnico João | concluído em 25/10/2026 20:31:05
+  Atendimento nº 2 | solicitação #103 | Carla Dias | SOFTWARE | prioridade 1 | responsável: Técnica Maria | concluído em 25/10/2026 20:31:05
+  Atendimento nº 3 | solicitação #104 | Davi Rocha | REDE | prioridade 1 | responsável: Técnico João | concluído em 25/10/2026 20:31:05
+
+Escolha uma opção: 
+--- Atendimentos concluídos (do último ao primeiro) ---
+  Atendimento nº 3 | solicitação #104 | Davi Rocha | REDE | prioridade 1 | responsável: Técnico João | concluído em 25/10/2026 20:31:05
+  Atendimento nº 2 | solicitação #103 | Carla Dias | SOFTWARE | prioridade 1 | responsável: Técnica Maria | concluído em 25/10/2026 20:31:05
+  Atendimento nº 1 | solicitação #101 | Ana Souza | HARDWARE | prioridade 1 | responsável: Técnico João | concluído em 25/10/2026 20:31:05
+
+Escolha uma opção: 
+Código da solicitação atendida:   Atendimento nº 2 | solicitação #103 | Carla Dias | SOFTWARE | prioridade 1 | responsável: Técnica Maria | concluído em 25/10/2026 20:31:05
+
+Escolha uma opção: 
+  Atendimento atual: Atendimento nº 3 | solicitação #104 | Davi Rocha | REDE | prioridade 1 | responsável: Técnico João | concluído em 25/10/2026 20:31:05
+  [A] Anterior  [P] Próximo  [I] Primeiro  [F] Último  [S] Sair:   Atendimento atual: Atendimento nº 2 | solicitação #103 | Carla Dias | SOFTWARE | prioridade 1 | responsável: Técnica Maria | concluído em 25/10/2026 20:31:05
+  [A] Anterior  [P] Próximo  [I] Primeiro  [F] Último  [S] Sair:   Atendimento atual: Atendimento nº 1 | solicitação #101 | Ana Souza | HARDWARE | prioridade 1 | responsável: Técnico João | concluído em 25/10/2026 20:31:05
+  [A] Anterior  [P] Próximo  [I] Primeiro  [F] Último  [S] Sair:   >> Aviso: Já está no primeiro atendimento do histórico.
+  Atendimento atual: Atendimento nº 1 | solicitação #101 | Ana Souza | HARDWARE | prioridade 1 | responsável: Técnico João | concluído em 25/10/2026 20:31:05
+  [A] Anterior  [P] Próximo  [I] Primeiro  [F] Último  [S] Sair:   Atendimento atual: Atendimento nº 2 | solicitação #103 | Carla Dias | SOFTWARE | prioridade 1 | responsável: Técnica Maria | concluído em 25/10/2026 20:31:05
+  [A] Anterior  [P] Próximo  [I] Primeiro  [F] Último  [S] Sair:   Atendimento atual: Atendimento nº 3 | solicitação #104 | Davi Rocha | REDE | prioridade 1 | responsável: Técnico João | concluído em 25/10/2026 20:31:05
+  [A] Anterior  [P] Próximo  [I] Primeiro  [F] Último  [S] Sair:   Atendimento atual: Atendimento nº 1 | solicitação #101 | Ana Souza | HARDWARE | prioridade 1 | responsável: Técnico João | concluído em 25/10/2026 20:31:05
+  [A] Anterior  [P] Próximo  [I] Primeiro  [F] Último  [S] Sair: 
+Escolha uma opção: 
+Encerrando o sistema. Até mais!

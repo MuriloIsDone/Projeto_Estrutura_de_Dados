@@ -1,0 +1,5 @@
+Lista inicial: A, B, C
+pollLast() devolveu: B   (esperado: C)
+Tamanho depois da chamada: 2   (esperado: 2)
+Lista com um único elemento: X
+pollLast() lançou NullPointerException   (esperado: devolver X)
