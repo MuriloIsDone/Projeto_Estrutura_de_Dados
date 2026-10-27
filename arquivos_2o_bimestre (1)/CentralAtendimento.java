@@ -5,32 +5,27 @@ import estruturas.LinkedList;
 import estruturas.Node;
 import estruturas.NodeDLL;
 import estruturas.Pilha;
-import excecoes.CampoInvalidoException;
-import excecoes.EstruturaInconsistenteException;
-import excecoes.OperacaoInvalidaException;
-import excecoes.PrioridadeInvalidaException;
-import excecoes.SemRegistroException;
-import excecoes.SemSolicitacaoException;
-import excecoes.SolicitacaoNaoEncontradaException;
+import excecoes.CentralException.CampoInvalidoException;
+import excecoes.CentralException.EstruturaInconsistenteException;
+import excecoes.CentralException.OperacaoInvalidaException;
+import excecoes.CentralException.PrioridadeInvalidaException;
+import excecoes.CentralException.SemRegistroException;
+import excecoes.CentralException.SemSolicitacaoException;
+import excecoes.CentralException.SolicitacaoNaoEncontradaException;
 import model.Atendimento;
 import model.Operacao;
 import model.Solicitacao;
 
-/**
- * Regras de negócio da Central de Atendimento (2º bimestre).
- *
- * Integração das quatro estruturas encadeadas fornecidas pelo professor:
- *  - Fila (duas instâncias, via ControleFilas): solicitações aguardando
- *    atendimento, uma fila por nível de prioridade;
- *  - Pilha<Operacao>: histórico recente de operações e desfazimento (LIFO);
- *  - LinkedList<Solicitacao>: cadastro geral de solicitações (lista simples);
- *  - DLL<Atendimento>: histórico navegável dos atendimentos concluídos.
- *
- * Fluxo: nova solicitação -> cadastro geral (lista) -> fila da prioridade ->
- * atender -> pilha de operações e lista dupla de atendimentos concluídos.
- *
- * Nenhuma classe da Java Collections Framework é utilizada.
- */
+
+//Regras de negócio da Central de Atendimento (2º bimestre).
+//Integração das quatro estruturas encadeadas fornecidas pelo professor:
+//- Fila (duas instâncias, via ControleFilas): solicitações aguardando atendimento, uma fila por nível de prioridade;
+//- Pilha<Operacao>: histórico recente de operações e desfazimento (LIFO);
+//- LinkedList<Solicitacao>: cadastro geral de solicitações (lista simples);
+//- DLL<Atendimento>: histórico navegável dos atendimentos concluídos.
+//Fluxo: nova solicitação -> cadastro geral (lista) -> fila da prioridade -> atender -> pilha de operações e lista dupla de atendimentos concluídos.
+//Nenhuma classe da Java Collections Framework é utilizada.
+
 public class CentralAtendimento {
 
     private final ControleFilas filas = new ControleFilas();
@@ -40,17 +35,15 @@ public class CentralAtendimento {
     private final Pilha<Operacao> historico = new Pilha<Operacao>(0);
     private final DLL<Atendimento> atendimentos = new DLL<Atendimento>();
 
-    private int proximoCodigo = 101;     // os códigos começam em 101, como no enunciado
-    private int proximaSequencia = 1;    // ordem cronológica dos atendimentos concluídos
+    private int proximoCodigo = 101;     // os codigos começam em 101, como no enunciado
+    private int proximaSequencia = 1;    // ordem cronologica dos atendimentos concluidos
 
     // Posição atual na navegação do histórico de atendimentos (null = inativa).
     private NodeDLL<Atendimento> cursorHistorico = null;
 
-    // ==================================================================
-    // ATENDIMENTO
-    // ==================================================================
+    //ATENDIMENTO
 
-    /** Cadastra uma solicitação: lista simples, fila da prioridade e pilha. */
+    // Cadastra uma solicitação: lista simples, fila da prioridade e pilha.
     public Solicitacao cadastrar(String solicitante, String descricao,
                                  String categoria, int prioridade)
             throws CampoInvalidoException, PrioridadeInvalidaException {
@@ -75,12 +68,12 @@ public class CentralAtendimento {
         return s;
     }
 
-    /** Próxima solicitação global (sem removê-la). */
+    // Próxima solicitação global (sem removê-la). */
     public Solicitacao consultarProxima() throws SemSolicitacaoException {
         return filas.proxima();
     }
 
-    /** Atende a próxima solicitação global. */
+    // Atende a próxima solicitação global. */
     public Solicitacao atenderProxima(String responsavel)
             throws CampoInvalidoException, SemSolicitacaoException {
         validarTexto("Responsável pelo atendimento", responsavel);
@@ -98,7 +91,7 @@ public class CentralAtendimento {
         return s;
     }
 
-    /** Texto com as duas filas, exibidas separadamente. */
+    // Texto com as duas filas, exibidas separadamente.
     public String exibirFilas() {
         try {
             return "--- Fila de prioridade 1 (alta) ---\n" + filas.formatar(Solicitacao.PRIORIDADE_ALTA)
@@ -108,7 +101,7 @@ public class CentralAtendimento {
         }
     }
 
-    /** Texto com a fila de uma única prioridade. */
+    // Texto com a fila de uma única prioridade.
     public String exibirFila(int prioridade) throws PrioridadeInvalidaException {
         return filas.formatar(prioridade);
     }
@@ -125,9 +118,7 @@ public class CentralAtendimento {
         return filas.descreverSelecao();
     }
 
-    // ==================================================================
-    // OPERAÇÕES (Pilha)
-    // ==================================================================
+    //OPERAÇÕES (Pilha)
 
     public Operacao ultimaOperacao() throws SemRegistroException {
         if (historico.isEmpty()) {
@@ -140,7 +131,7 @@ public class CentralAtendimento {
         return historico.sizeElements();
     }
 
-    /** Histórico recente, da operação mais recente para a mais antiga (LIFO). */
+    //Histórico recente, da operação mais recente para a mais antiga (LIFO).
     public String historicoRecente() throws SemRegistroException {
         if (historico.isEmpty()) {
             throw new SemRegistroException("Nenhuma operação foi registrada ainda.");
@@ -158,12 +149,10 @@ public class CentralAtendimento {
         return sb.toString();
     }
 
-    /**
-     * Desfaz o último atendimento. Somente operações do tipo ATENDIMENTO podem
-     * ser desfeitas. A solicitação retorna ao INÍCIO da fila de sua prioridade
-     * (posição que ocupava antes), o contador de anti-inanição é restaurado e o
-     * registro correspondente é removido do histórico de atendimentos.
-     */
+    //Desfaz o último atendimento. Somente operações do tipo ATENDIMENTO podem
+    // ser desfeitas. A solicitação retorna ao INÍCIO da fila de sua prioridade
+    // (posição que ocupava antes), o contador de anti-inanição é restaurado e o
+    // registro correspondente é removido do histórico de atendimentos.
     public Solicitacao desfazerUltimaOperacao()
             throws SemRegistroException, OperacaoInvalidaException {
         if (historico.isEmpty()) {
@@ -191,9 +180,7 @@ public class CentralAtendimento {
         return s;
     }
 
-    // ==================================================================
-    // CADASTRO GERAL (Lista Simples)
-    // ==================================================================
+    //CADASTRO GERAL (Lista Simples)
 
     public String exibirTodas() throws SemRegistroException {
         if (cadastro.isEmpty()) {
@@ -250,10 +237,9 @@ public class CentralAtendimento {
         return sb.length() == 0 ? "  (nenhuma solicitação na categoria " + chave.toUpperCase() + ")\n" : sb.toString();
     }
 
-    /**
-     * Cancela uma solicitação que ainda aguarda atendimento: sai da fila, o
-     * status passa a CANCELADA e ela permanece no cadastro geral.
-     */
+    //Cancela uma solicitação que ainda aguarda atendimento: sai da fila, o
+    //status passa a CANCELADA e ela permanece no cadastro geral.
+
     public Solicitacao cancelar(int codigo)
             throws SolicitacaoNaoEncontradaException, OperacaoInvalidaException {
         Solicitacao s = pesquisarPorCodigo(codigo);
@@ -269,11 +255,10 @@ public class CentralAtendimento {
         return s;
     }
 
-    /**
-     * Remove uma solicitação do cadastro geral. Se estiver aguardando, também
-     * sai da fila. Solicitações CONCLUIDAS não podem ser removidas, pois fazem
-     * parte do histórico de atendimentos.
-     */
+    //Remove uma solicitação do cadastro geral. Se estiver aguardando, também
+    // sai da fila. Solicitações CONCLUIDAS não podem ser removidas, pois fazem
+    // parte do histórico de atendimentos.
+
     public Solicitacao remover(int codigo)
             throws SolicitacaoNaoEncontradaException, OperacaoInvalidaException {
         Solicitacao s = pesquisarPorCodigo(codigo);
@@ -305,15 +290,13 @@ public class CentralAtendimento {
         return total;
     }
 
-    // ==================================================================
     // HISTÓRICO DE ATENDIMENTOS (Lista Duplamente Encadeada)
-    // ==================================================================
 
     public int quantidadeAtendimentos() {
         return atendimentos.getSize();
     }
 
-    /** Percurso do início para o fim (do atendimento mais antigo ao mais recente). */
+    //Percurso do início para o fim (do atendimento mais antigo ao mais recente).
     public String historicoDoPrimeiroAoUltimo() throws SemRegistroException {
         exigirHistoricoNaoVazio();
         StringBuilder sb = new StringBuilder();
@@ -325,7 +308,7 @@ public class CentralAtendimento {
         return sb.toString();
     }
 
-    /** Percurso do fim para o início, usando a referência ao nó anterior. */
+    //Percurso do fim para o início, usando a referência ao nó anterior.
     public String historicoDoUltimoAoPrimeiro() throws SemRegistroException {
         exigirHistoricoNaoVazio();
         StringBuilder sb = new StringBuilder();
@@ -347,7 +330,7 @@ public class CentralAtendimento {
         return ultimoNo().getData();
     }
 
-    /** Localiza o atendimento concluído de uma solicitação, pelo código dela. */
+    // Localiza o atendimento concluído de uma solicitação, pelo código dela
     public Atendimento pesquisarAtendimento(int codigoSolicitacao) throws SemRegistroException {
         exigirHistoricoNaoVazio();
         NodeDLL<Atendimento> atual = atendimentos.getHead();
@@ -361,9 +344,9 @@ public class CentralAtendimento {
                 + codigoSolicitacao + ".");
     }
 
-    // --- Navegação (anterior / próximo) ---
+    //Navegação (anterior / próximo) 
 
-    /** Inicia a navegação no atendimento mais recente. */
+    // Inicia a navegação no atendimento mais recente.
     public Atendimento iniciarNavegacao() throws SemRegistroException {
         exigirHistoricoNaoVazio();
         cursorHistorico = ultimoNo();
@@ -426,9 +409,7 @@ public class CentralAtendimento {
         return sb.toString();
     }
 
-    // ==================================================================
     // MÉTODOS AUXILIARES
-    // ==================================================================
 
     private int quantidadeFila(int prioridade) {
         try {

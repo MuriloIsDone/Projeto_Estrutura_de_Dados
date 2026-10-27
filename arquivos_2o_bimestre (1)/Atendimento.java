@@ -3,12 +3,11 @@ package model;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-/**
- * Registro de um atendimento concluído, guardado na Lista Duplamente Encadeada.
- * A DLL do professor mantém os elementos em ordem crescente e exige que o tipo
- * implemente Comparable; por isso a chave de ordenação é um número de sequência
- * único e crescente, que preserva a ordem cronológica de conclusão.
- */
+//Registro de um atendimento concluído, guardado na Lista Duplamente Encadeada.
+// A DLL do professor mantém os elementos em ordem crescente e exige que o tipo
+// implemente Comparable; por isso a chave de ordenação é um número de sequência
+// único e crescente, que preserva a ordem cronológica de conclusão.
+
 public class Atendimento implements Comparable<Atendimento> {
 
     private static final DateTimeFormatter FORMATO =

@@ -1,9 +1,9 @@
 package service;
 
 import estruturas.Fila;
-import excecoes.EstruturaInconsistenteException;
-import excecoes.PrioridadeInvalidaException;
-import excecoes.SemSolicitacaoException;
+import excecoes.CentralException.EstruturaInconsistenteException;
+import excecoes.CentralException.PrioridadeInvalidaException;
+import excecoes.CentralException.SemSolicitacaoException;
 import model.Solicitacao;
 
 /**
